@@ -12,9 +12,4 @@ target_link_libraries(g726 /opt/homebrew/lib/libspandsp.dylib)
 
 include_directories(/opt/homebrew/Cellar/libtiff/4.7.0/include)
 link_directories(/opt/homebrew/Cellar/libtiff/4.7.0/lib)
-target_link_libraries(g726 /opt/homebrew/Cellar/libtiff)
-
-#include_directories(/Users/ikanel/anaconda3/lib/python3.10/site-packages/pybind11/include)
-#include_directories(/Users/ikanel/anaconda3/include/python3.10)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fsanitize=undefined  -g -fno-omit-frame-pointer")
-#/opt/homebrew/Cellar/libtiff/4.7.0
+#target_link_libraries(g726 /opt/homebrew/Cellar/libtiff)
