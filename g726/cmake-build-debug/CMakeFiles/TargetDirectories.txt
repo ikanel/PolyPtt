@@ -1,0 +1,3 @@
+/Users/ikanel/code/PolycomPTT/g726/cmake-build-debug/CMakeFiles/g726.dir
+/Users/ikanel/code/PolycomPTT/g726/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ikanel/code/PolycomPTT/g726/cmake-build-debug/CMakeFiles/rebuild_cache.dir

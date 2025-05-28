@@ -1,0 +1,27 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -DCMAKE_INCLUDE_PATH=/opt/homebrew/include -G Ninja -S /Users/ikanel/code/PolycomPTT/g726 -B /Users/ikanel/code/PolycomPTT/g726/cmake-build-debug
+-- The C compiler identification is AppleClang 14.0.3.14030022
+-- The CXX compiler identification is AppleClang 14.0.3.14030022
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.4s)
+CMake Warning at CMakeLists.txt:13 (target_link_libraries):
+  Target "g726" requests linking to directory "/opt/homebrew/Cellar/libtiff".
+  Targets may link only to libraries.  CMake is dropping the item.
+
+
+-- Generating done (0.1s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_INCLUDE_PATH
+
+
+-- Build files have been written to: /Users/ikanel/code/PolycomPTT/g726/cmake-build-debug

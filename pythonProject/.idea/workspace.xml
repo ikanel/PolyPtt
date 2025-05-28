@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ce2e409c-7efb-49ef-8b98-edd4a3fa3798" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../pttMulticast/spandsp/spandsp" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2woov8hoxSFeJpDTWrNdNmtF7fe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python._darwinkeyboard.executor": "Debug",
+    "Python.aal2-rfc3551.executor": "Run",
+    "Python.loop.executor": "Run",
+    "Python.player.executor": "Run",
+    "Python.playerconv.executor": "Debug",
+    "Python.ptt_multicast.executor": "Run",
+    "Python.receiver.executor": "Debug",
+    "Python.recorder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Shell Script.cod.sh.executor": "Run",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../pttMulticast" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.22855.92" />
+        <option value="bundled-python-sdk-b068d85d1acf-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.22855.92" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce2e409c-7efb-49ef-8b98-edd4a3fa3798" name="Changes" comment="" />
+      <created>1746717514594</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746717514594</updated>
+      <workItem from="1746717519597" duration="13843000" />
+      <workItem from="1746883355658" duration="3566000" />
+      <workItem from="1747513181900" duration="28428000" />
+      <workItem from="1747686540788" duration="28157000" />
+      <workItem from="1747758646236" duration="24000" />
+      <workItem from="1747761625718" duration="11030000" />
+      <workItem from="1747859349299" duration="22000" />
+      <workItem from="1748191152516" duration="36508000" />
+      <workItem from="1748295162926" duration="13658000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="packed_data[20:]" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/pythonProject$player.coverage" NAME="player Coverage Results" MODIFIED="1747709990428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast/g276/python_g726" />
+    <SUITE FILE_PATH="coverage/pythonProject$recorder.coverage" NAME="recorder Coverage Results" MODIFIED="1748300487056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$loop.coverage" NAME="loop Coverage Results" MODIFIED="1748307491574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pttMulticast$ptt_multicast.coverage" NAME="ptt_multicast Coverage Results" MODIFIED="1746849639157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$aal2_rfc3551.coverage" NAME="aal2-rfc3551 Coverage Results" MODIFIED="1747707682239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$playerconv.coverage" NAME="playerconv Coverage Results" MODIFIED="1748305169720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1748307391159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$_darwinkeyboard.coverage" NAME="_darwinkeyboard Coverage Results" MODIFIED="1748292168540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Python/3.9/lib/python/site-packages/keyboard" />
+    <SUITE FILE_PATH="coverage/pythonProject$ptt_multicast.coverage" NAME="ptt_multicast Coverage Results" MODIFIED="1748298977978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+  </component>
+</project>
