@@ -19,14 +19,9 @@ def run_g726_decoder(inputBytes):
     ]
     lib.decodeFromByteArray.restype = ctypes.c_int16
     max_packet_size=9000
-
     output_size = max_packet_size * 4
-
     output_type = ctypes.c_int16 * output_size
-
-
     packets=math.ceil(len(inputBytes)/max_packet_size)
-
     result=[]
 
     for p in range(packets):
@@ -44,6 +39,11 @@ def run_g726_decoder(inputBytes):
 def reverse_bits(byte):
     return int('{:08b}'.format(byte)[::-1], 2)
 
+
+def decode_g726qi(g726qi_data):
+    standard_g726 = bytes(reverse_bits(b) for b in g726qi_data)
+    decoded = run_g726_decoder(standard_g726)
+    return decoded
 
 def decode_and_play(g726qi_data):
     standard_g726 = bytes(reverse_bits(b) for b in g726qi_data)

@@ -1,10 +1,15 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 const isRecording = ref(false)
+const isListening = ref(false)
+const username = ref('igor')
+const password = ref('polycom')
+const connectionStatus = ref('Disconnected')
 
 let mediaStream: MediaStream | null = null
 let audioContext: AudioContext | null = null
+let audioCtx: AudioContext
+
 let processor: ScriptProcessorNode | null = null
 let websocket: WebSocket | null = null
 
@@ -17,28 +22,18 @@ function floatTo16BitPCM(input: Float32Array): Int16Array {
   return output
 }
 
-function resampleBuffer(audioBuffer: AudioBuffer, targetSampleRate = 16000): Promise<AudioBuffer> {
-  const offlineCtx = new OfflineAudioContext(
-    1,
-    Math.ceil(audioBuffer.duration * targetSampleRate),
-    targetSampleRate,
-  )
-  const source = offlineCtx.createBufferSource()
-  source.buffer = audioBuffer
-  source.connect(offlineCtx.destination)
-  source.start()
-  return offlineCtx.startRendering()
-}
-
 async function startRecording(): Promise<void> {
-  websocket = new WebSocket('ws://localhost:8080')
-  websocket.binaryType = 'arraybuffer'
+  if (websocket == undefined) {
+    console.warn('WebSocket is closed or not ready')
+    return
+  }
+  websocket.send('start_broadcast')
 
   mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
-  audioContext = new AudioContext({ sampleRate: 44100 })
+  audioContext = new AudioContext({ sampleRate: 16000 })
 
   const source = audioContext.createMediaStreamSource(mediaStream)
-  processor = audioContext.createScriptProcessor(4096, 1, 1)
+  processor = audioContext.createScriptProcessor(16384, 1, 1)
 
   source.connect(processor)
   processor.connect(audioContext.destination)
@@ -51,8 +46,8 @@ async function startRecording(): Promise<void> {
     buffer.copyToChannel(input, 0)
 
     try {
-      const resampledBuffer = await resampleBuffer(buffer, 16000)
-      const resampled = resampledBuffer.getChannelData(0)
+      //const resampledBuffer = await resampleBuffer(buffer, 16000)
+      const resampled = input
       const pcm16 = floatTo16BitPCM(resampled)
 
       websocket.send(pcm16.buffer)
@@ -63,23 +58,93 @@ async function startRecording(): Promise<void> {
 
   isRecording.value = true
 }
+function handlePCMData(data: ArrayBuffer) {
+  const int16 = new Int16Array(data)
+  const float32 = new Float32Array(int16.length)
+
+  // Convert 16-bit PCM to float [-1, 1]
+  for (let i = 0; i < int16.length; i++) {
+    float32[i] = int16[i] / 32768
+  }
+
+  audioCtx.resume()
+  const buffer = audioCtx.createBuffer(1, float32.length, 8000)
+  buffer.getChannelData(0).set(float32)
+
+  const source = audioCtx.createBufferSource()
+  source.buffer = buffer
+  source.connect(audioCtx.destination)
+  source.start()
+}
 
 function stopRecording(): void {
   processor?.disconnect()
   mediaStream?.getTracks().forEach((t) => t.stop())
   audioContext?.close()
-  websocket?.close()
+  if (websocket) {
+    websocket.send('stop_broadcast')
+  }
+  //websocket?.close()
 
   processor = null
   audioContext = null
   mediaStream = null
-  websocket = null
+  //websocket = null
   isRecording.value = false
+}
+
+function initAudio() {
+  isListening.value = true
+  audioCtx.resume()
 }
 
 function toggleRecording(): void {
   isRecording.value ? stopRecording() : startRecording()
 }
+
+function Reconnect(): void {
+  initAudio()
+  if (websocket?.readyState === WebSocket.OPEN) {
+    websocket?.close()
+  }
+  const token = btoa(`${username.value}:${password.value}`)
+  websocket = new WebSocket(`ws://localhost:8765/?auth=${token}`)
+  websocket.binaryType = 'arraybuffer'
+  websocket.onopen = () => {
+    console.log('Connected')
+    connectionStatus.value = 'Connected'
+  }
+
+  websocket.onmessage = (event) => {
+    console.log('Received message:', event.data)
+    connectionStatus.value = `${event.data.byteLength} bytes received `
+
+    if (event.data instanceof ArrayBuffer) {
+      handlePCMData(event.data)
+    }
+  }
+
+  websocket.onerror = () => {
+    console.log('websocket Error')
+    connectionStatus.value = 'WebSocket Error'
+  }
+
+  websocket.onclose = () => {
+    console.log('Disconnected')
+    connectionStatus.value = 'Disconnected'
+  }
+}
+
+onMounted(() => {
+  audioCtx = new AudioContext({ sampleRate: 8000 })
+  Reconnect()
+})
+
+onBeforeUnmount(() => {
+  websocket?.close()
+  audioCtx?.close()
+  audioContext?.close()
+})
 </script>
 
 <style scoped>
@@ -88,11 +153,35 @@ body {
 }
 </style>
 <template>
-  <div class="p-4">
-    <h1 class="text-xl font-bold">16kHz PCM Mic Streamer</h1>
-    <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
-      {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
-    </button>
+  <div class="column">
+    <h1 class="text-xl font-bold">Polycom PPT</h1>
+
+    <div class="box">
+      username:<input
+        type="text"
+        placeholder="user"
+        class="border p-2 w-full mb-4"
+        v-model="username"
+      />
+      password:<input
+        type="text"
+        placeholder="password"
+        class="border p-2 w-full mb-4"
+        v-model="password"
+      />
+      <button @click="Reconnect" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+        Reconnect
+      </button>
+      Status:{{ connectionStatus }}
+    </div>
+    <div class="box">
+      <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+        {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+      </button>
+      <button @click="initAudio">
+        {{ isListening ? 'Listening' : 'Click to start listening' }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -106,6 +195,14 @@ header {
   margin: 0 auto 2rem;
 }
 
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center; /* horizontal center */
+  height: 100vh; /* full screen height */
+}
+
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -115,6 +212,11 @@ header {
 
   .logo {
     margin: 0 2rem 0 0;
+  }
+  .box {
+    width: 800px;
+    height: 100px;
+    margin: 10px;
   }
 
   header .wrapper {

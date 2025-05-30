@@ -2,7 +2,6 @@ import socket
 import struct
 import netifaces
 import playerconv
-
 MCAST_GRP = '224.0.0.251'
 IFACE = 'en0'  # Change if you’re using a different interface
 MCAST_PORT = 5002
@@ -75,17 +74,15 @@ def get_socket(MCAST_GRP,MCAST_PORT,IFACE="en0"):
     print(f"Listening on {MCAST_GRP}:{MCAST_PORT} via {IFACE} ({iface_ip})")
 
     return  sock
+
 def release_sock():
     global sock
     if sock is None:
         return
-    # Shutdown the socket (optional, but recommended)
-    #sock.shutdown(socket.SHUT_RDWR)
 
     # Close the socket, unbinding it from the address and port
     sock.close()
     sock=None
-
 
 def wait_for_broadcast(MCAST_GRP,MCAST_PORT,IFACE="en0"):
     global playing

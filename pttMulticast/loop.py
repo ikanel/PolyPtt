@@ -26,11 +26,8 @@ def on_press2(key):
     except AttributeError:
         print("Unsupported command: use only b for broadcast and r for listening")
 
-
 listener = keyboard.Listener(on_press=on_press2)
 listener.start()
-
-
 
 print("Click B to start broadcast, Q for exit. All other time system is in listening mode")
 

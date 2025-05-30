@@ -18,6 +18,12 @@ def play_g722(g722_bytes):
     sd.play(pcm_array, samplerate=sample_rate)
     sd.wait()
 
+def play_PCM(pcm_data):
+    # Play with sounddevice
+    pcm_array = np.frombuffer(pcm_data, dtype=np.int16)
+    sd.play(pcm_array, samplerate=sample_rate)
+    sd.wait()
+
 def rec_callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
 
