@@ -6,9 +6,9 @@ add_library(g726 SHARED main.cpp)
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(/opt/homebrew/Cellar/spandsp/0.0.6_3/include)
-link_directories(/opt/homebrew/Cellar/spandsp/0.0.6_3/lib)
-target_link_libraries(g726 /opt/homebrew/lib/libspandsp.dylib)
+include_directories(/usr/include/spandsp/)
+link_directories(/usr/lib/aarch64-linux-gnu/)
+target_link_libraries(g726 /usr/lib/aarch64-linux-gnu/libspandsp.so)
 
 #Raspberry pi settings
 #include_directories(/usr/include/spandsp/)
@@ -21,3 +21,4 @@ link_directories(/opt/homebrew/Cellar/libtiff/4.7.0/lib)
 #Raspberry pi settings
 #include_directories(/usr/include/aarch64-linux-gnu/)
 #link_directories(/usr/lib/aarch64-linux-gnu/)
+
