@@ -8,11 +8,10 @@ from receiver import BroadcastingCompletedException
 from websockets.exceptions import InvalidHandshake
 from urllib.parse import urlparse, parse_qs
 
-OUTPUT_FILE = "output.raw"
 import ptt_multicast
 import socket,netifaces,struct
 MCAST_GRP = '224.0.0.251'
-IFACE = 'en0'  # Change if you’re using a different interface
+IFACE = 'wlan0'  # Change if you’re using a different interface
 MCAST_PORT = 5002
 CHANNEL=1
 ws=None
@@ -49,8 +48,9 @@ class PolycomServerProtocol:
             if p is not None and len(p) > 0:
                 seq, packet = p
                 recv_packets[seq] = packet
+                print(f"received {len(recv_packets)} packets")
 
-                if len(recv_packets)*240>16384:
+                if len(recv_packets)*240>10000:
                     g726qi_bytes = []
                     for b in sorted(recv_packets.items()):
                         g726qi_bytes += b[1]
@@ -58,9 +58,9 @@ class PolycomServerProtocol:
                     pcm_bytes=playerconv.decode_g726qi(g726qi_bytes)
 
                     if ws != None:
-                       asyncio.run(ws.send(bytes(pcm_bytes)))
+                        asyncio.create_task(ws.send(bytes(pcm_bytes)))
         except BroadcastingCompletedException:
-            pass
+            print("Broadcasting completed")
         except Exception as e:
             print("Exception on UDP recv:"+e)
 
@@ -99,29 +99,30 @@ async def send_to_client(websocket,sock):
             lambda: PolycomServerProtocol(),sock=sock
         )
     except Exception as e:
-        print("Exception while connecting to UDP")
+        print(f"Exception while connecting to UDP:{e}")
 
 
 
 async def handle_connection(websocket):
     print("WSClient connected")
     try:
-        query = parse_qs(urlparse(websocket.request.path).query)
-        auth = query.get("auth", [None])[0]
+  #      query = parse_qs(urlparse(websocket.request.path).query)
+  #      auth = query.get("auth", [None])[0]
 
-        if not auth:
-            await websocket.close()
-            return
+  #      if not auth:
+  #          await websocket.close()
+  #          return
 
-        try:
-            decoded = base64.b64decode(auth).decode()
-            username, password = decoded.split(":")
-            if username != VALID_USERNAME or password != VALID_PASSWORD:
-                await websocket.close()
-                return
-        except Exception:
-            await websocket.close()
-            return
+       # try:
+            #decoded = base64.b64decode(auth).decode()
+            #username, password = decoded.split(":")
+            #if username != VALID_USERNAME or password != VALID_PASSWORD:
+            #    await websocket.close()
+            #    return
+        #except Exception as e:
+        #    print(f"Exception during connection setup:{e}")
+        #    await websocket.close()
+        #    return
 
         sock=None
         try:
@@ -146,7 +147,7 @@ async def handle_connection(websocket):
 async def main():
 
 
-    async with websockets.serve(handle_connection, "localhost", 8765):
+    async with websockets.serve(handle_connection, "0.0.0.0", 8765):
         print("WebSocket server started at ws://localhost:8765")
         await asyncio.Future()  # Run forever
 

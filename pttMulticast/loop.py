@@ -5,7 +5,7 @@ from pynput import keyboard
 from ptt_multicast import record_and_send_broadcast
 import  receiver
 MCAST_GRP = '224.0.0.251'
-IFACE = 'en0'  # Change if you’re using a different interface
+IFACE = 'wlan0'  # Change if you’re using a different interface
 MCAST_PORT = 5002
 
 current_task="Listen"
@@ -35,11 +35,11 @@ print("Click B to start broadcast, Q for exit. All other time system is in liste
 while current_task!="Quit":
     if current_task=="Broadcast":
         receiver.release_sock()
-        record_and_send_broadcast(MCAST_GRP, MCAST_PORT)
+        record_and_send_broadcast(MCAST_GRP, MCAST_PORT,IFACE)
         current_task="Listen"
         print("Back to Listening mode")
     elif current_task=="Listen":
-        receiver.wait_for_broadcast(MCAST_GRP, MCAST_PORT)
+        receiver.wait_for_broadcast(MCAST_GRP, MCAST_PORT,IFACE)
 
 
 

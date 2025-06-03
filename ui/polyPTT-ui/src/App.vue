@@ -2,8 +2,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 const isRecording = ref(false)
 const isListening = ref(false)
-const username = ref('igor')
-const password = ref('polycom')
 const connectionStatus = ref('Disconnected')
 
 let mediaStream: MediaStream | null = null
@@ -107,8 +105,10 @@ function Reconnect(): void {
   if (websocket?.readyState === WebSocket.OPEN) {
     websocket?.close()
   }
-  const token = btoa(`${username.value}:${password.value}`)
-  websocket = new WebSocket(`ws://localhost:8765/?auth=${token}`)
+  
+  const wsBaseUrl=window.location.protocol=="https:"?`wss://${window.location.hostname}/ws`:`ws://${window.location.hostname}:8765`;
+  console.log(wsBaseUrl);
+  websocket = new WebSocket(`${wsBaseUrl}`)
   websocket.binaryType = 'arraybuffer'
   websocket.onopen = () => {
     console.log('Connected')
@@ -155,25 +155,6 @@ body {
 <template>
   <div class="column">
     <h1 class="text-xl font-bold">Polycom PPT</h1>
-
-    <div class="box">
-      username:<input
-        type="text"
-        placeholder="user"
-        class="border p-2 w-full mb-4"
-        v-model="username"
-      />
-      password:<input
-        type="text"
-        placeholder="password"
-        class="border p-2 w-full mb-4"
-        v-model="password"
-      />
-      <button @click="Reconnect" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
-        Reconnect
-      </button>
-      Status:{{ connectionStatus }}
-    </div>
     <div class="box">
       <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
         {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
@@ -181,6 +162,10 @@ body {
       <button @click="initAudio">
         {{ isListening ? 'Listening' : 'Click to start listening' }}
       </button>
+      <button @click="Reconnect" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+        Reconnect
+      </button>
+      Status:{{ connectionStatus }}
     </div>
   </div>
 </template>
