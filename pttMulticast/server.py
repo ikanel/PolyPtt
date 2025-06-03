@@ -106,24 +106,6 @@ async def send_to_client(websocket,sock):
 async def handle_connection(websocket):
     print("WSClient connected")
     try:
-  #      query = parse_qs(urlparse(websocket.request.path).query)
-  #      auth = query.get("auth", [None])[0]
-
-  #      if not auth:
-  #          await websocket.close()
-  #          return
-
-       # try:
-            #decoded = base64.b64decode(auth).decode()
-            #username, password = decoded.split(":")
-            #if username != VALID_USERNAME or password != VALID_PASSWORD:
-            #    await websocket.close()
-            #    return
-        #except Exception as e:
-        #    print(f"Exception during connection setup:{e}")
-        #    await websocket.close()
-        #    return
-
         sock=None
         try:
             sock=get_socket(MCAST_GRP,MCAST_PORT,IFACE)
