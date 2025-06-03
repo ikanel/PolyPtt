@@ -8,6 +8,9 @@ import os
 def run_g726_decoder(inputBytes):
     # Load the library
     lib = ctypes.CDLL(os.path.abspath("../g726/cmake-build-debug/libg726.dylib"))  # Adjust for OS
+    #lib = ctypes.CDLL(os.path.abspath("../g726/libg726.so"))  # This one is for Raspberry PI
+
+
     # Set function signature
     lib.decodeFromByteArray.argtypes = [
         ctypes.POINTER(ctypes.c_uint8),
