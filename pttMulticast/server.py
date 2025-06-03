@@ -11,7 +11,9 @@ from urllib.parse import urlparse, parse_qs
 import ptt_multicast
 import socket,netifaces,struct
 MCAST_GRP = '224.0.0.251'
-IFACE = 'wlan0'  # Change if you’re using a different interface
+IFACE = 'en0'  # Change if you’re using a different interface
+#IFACE = 'wlan0'  # raspberry PI
+
 MCAST_PORT = 5002
 CHANNEL=1
 ws=None
