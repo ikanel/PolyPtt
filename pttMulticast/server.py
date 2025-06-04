@@ -1,20 +1,16 @@
 import asyncio
 import websockets
 import receiver
-import base64
 import recorder,playerconv
 from ptt_multicast import CHANNEL
 from receiver import BroadcastingCompletedException
-from websockets.exceptions import InvalidHandshake
-from urllib.parse import urlparse, parse_qs
-
 import ptt_multicast
 import socket,netifaces,struct
 MCAST_GRP = '224.0.0.251'
 
 IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
-MCAST_PORT = 5001
 #IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
+MCAST_PORT = 5001
 
 CHANNEL=1
 ws=None
