@@ -10,6 +10,15 @@ include_directories(/usr/include/spandsp/)
 link_directories(/usr/lib/aarch64-linux-gnu/)
 target_link_libraries(g726 /usr/lib/aarch64-linux-gnu/libspandsp.so)
 
-include_directories(/usr/include/aarch64-linux-gnu/)
-link_directories(/usr/lib/aarch64-linux-gnu/)
-#target_link_libraries(g726 /opt/homebrew/Cellar/libtiff)
+#Raspberry pi settings
+#include_directories(/usr/include/spandsp/)
+#link_directories(/usr/lib/aarch64-linux-gnu/)
+#target_link_libraries(g726 /usr/lib/aarch64-linux-gnu/libspandsp.so)
+
+include_directories(/opt/homebrew/Cellar/libtiff/4.7.0/include)
+link_directories(/opt/homebrew/Cellar/libtiff/4.7.0/lib)
+
+#Raspberry pi settings
+#include_directories(/usr/include/aarch64-linux-gnu/)
+#link_directories(/usr/lib/aarch64-linux-gnu/)
+

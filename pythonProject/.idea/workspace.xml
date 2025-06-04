@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce2e409c-7efb-49ef-8b98-edd4a3fa3798" name="Changes" comment="" />
+    <list default="true" id="ce2e409c-7efb-49ef-8b98-edd4a3fa3798" name="Changes" comment="megachanges">
+      <change beforePath="$PROJECT_DIR$/../g726/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../g726/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-33a9c687b95cbeed1850.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/.cmake/api/v1/reply/index-2025-05-26T17-55-50-0262.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/../g726/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/../g726/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdC/CMakeCCompilerId.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/g726.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/build.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/g726" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/libg726.dylib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../g726/cmake-build-debug/phone1.pcm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pttMulticast/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../pttMulticast/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +50,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../pttMulticast/spandsp/spandsp" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -28,27 +60,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python._darwinkeyboard.executor": "Debug",
-    "Python.aal2-rfc3551.executor": "Run",
-    "Python.loop.executor": "Run",
-    "Python.player.executor": "Run",
-    "Python.playerconv.executor": "Debug",
-    "Python.ptt_multicast.executor": "Run",
-    "Python.receiver.executor": "Debug",
-    "Python.recorder.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Shell Script.cod.sh.executor": "Run",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python._darwinkeyboard.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.aal2-rfc3551.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_events.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.loop.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.playerconv.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.ptt_multicast.executor&quot;: &quot;Run&quot;,
+    &quot;Python.receiver.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.recorder.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Shell Script.cod.sh.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/PyCharm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/../pttMulticast" />
@@ -78,12 +115,36 @@
       <workItem from="1747761625718" duration="11030000" />
       <workItem from="1747859349299" duration="22000" />
       <workItem from="1748191152516" duration="36508000" />
-      <workItem from="1748295162926" duration="13658000" />
+      <workItem from="1748295162926" duration="43766000" />
+      <workItem from="1748653807394" duration="3192000" />
+      <workItem from="1748967569013" duration="17000" />
     </task>
+    <task id="LOCAL-00001" summary="added gitignore">
+      <option name="closed" value="true" />
+      <created>1748448985267</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748448985267</updated>
+    </task>
+    <task id="LOCAL-00002" summary="megachanges">
+      <option name="closed" value="true" />
+      <created>1748621323336</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1748621323336</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added gitignore" />
+    <MESSAGE value="megachanges" />
+    <option name="LAST_COMMIT_MESSAGE" value="megachanges" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -94,13 +155,15 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject$player.coverage" NAME="player Coverage Results" MODIFIED="1747709990428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast/g276/python_g726" />
-    <SUITE FILE_PATH="coverage/pythonProject$recorder.coverage" NAME="recorder Coverage Results" MODIFIED="1748300487056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
-    <SUITE FILE_PATH="coverage/pythonProject$loop.coverage" NAME="loop Coverage Results" MODIFIED="1748307491574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$recorder.coverage" NAME="recorder Coverage Results" MODIFIED="1748621071466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$loop.coverage" NAME="loop Coverage Results" MODIFIED="1748621155628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
     <SUITE FILE_PATH="coverage/pttMulticast$ptt_multicast.coverage" NAME="ptt_multicast Coverage Results" MODIFIED="1746849639157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
     <SUITE FILE_PATH="coverage/pythonProject$aal2_rfc3551.coverage" NAME="aal2-rfc3551 Coverage Results" MODIFIED="1747707682239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
-    <SUITE FILE_PATH="coverage/pythonProject$playerconv.coverage" NAME="playerconv Coverage Results" MODIFIED="1748305169720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
-    <SUITE FILE_PATH="coverage/pythonProject$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1748307391159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$playerconv.coverage" NAME="playerconv Coverage Results" MODIFIED="1748614143284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$server.coverage" NAME="server Coverage Results" MODIFIED="1748895412018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1748578771453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
     <SUITE FILE_PATH="coverage/pythonProject$_darwinkeyboard.coverage" NAME="_darwinkeyboard Coverage Results" MODIFIED="1748292168540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Python/3.9/lib/python/site-packages/keyboard" />
-    <SUITE FILE_PATH="coverage/pythonProject$ptt_multicast.coverage" NAME="ptt_multicast Coverage Results" MODIFIED="1748298977978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
+    <SUITE FILE_PATH="coverage/pythonProject$base_events.coverage" NAME="base_events Coverage Results" MODIFIED="1748612365248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio" />
+    <SUITE FILE_PATH="coverage/pythonProject$ptt_multicast.coverage" NAME="ptt_multicast Coverage Results" MODIFIED="1748572388796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pttMulticast" />
   </component>
 </project>

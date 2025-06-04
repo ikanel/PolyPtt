@@ -3,7 +3,10 @@ import struct
 import netifaces
 import playerconv
 MCAST_GRP = '224.0.0.251'
-IFACE = 'wlan0'  # Change if you’re using a different interface
+
+IFACE = 'en0'  # Change if you’re using a different interface
+#IFACE = 'wlan0'  # Value for the Raspberry pi
+
 MCAST_PORT = 5002
 
 sock=None
