@@ -2,6 +2,8 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 const isRecording = ref(false)
 const isListening = ref(false)
+const selectedTarget = ref('')
+
 const connectionStatus = ref('Disconnected')
 
 let mediaStream: MediaStream | null = null
@@ -21,11 +23,16 @@ function floatTo16BitPCM(input: Float32Array): Int16Array {
 }
 
 async function startRecording(): Promise<void> {
-  if (websocket == undefined) {
+  if (websocket == undefined || websocket?.readyState != WebSocket.OPEN) {
     console.warn('WebSocket is closed or not ready')
     return
   }
-  websocket.send('start_broadcast')
+
+  let target = ''
+  if (selectedTarget != undefined && selectedTarget.value != '') {
+    target = ` target:${selectedTarget.value}`
+  }
+  websocket.send(`start_broadcast${target}`)
 
   mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
   audioContext = new AudioContext({ sampleRate: 16000 })
@@ -105,9 +112,12 @@ function Reconnect(): void {
   if (websocket?.readyState === WebSocket.OPEN) {
     websocket?.close()
   }
-  
-  const wsBaseUrl=window.location.protocol=="https:"?`wss://${window.location.hostname}/ws`:`ws://${window.location.hostname}:8765`;
-  console.log(wsBaseUrl);
+
+  const wsBaseUrl =
+    window.location.protocol == 'https:'
+      ? `wss://${window.location.hostname}/ws`
+      : `ws://${window.location.hostname}:8765`
+  console.log(wsBaseUrl)
   websocket = new WebSocket(`${wsBaseUrl}`)
   websocket.binaryType = 'arraybuffer'
   websocket.onopen = () => {
@@ -156,6 +166,13 @@ body {
   <div class="column">
     <h1 class="text-xl font-bold">Polycom PPT</h1>
     <div class="box">
+      <select v-model="selectedTarget" id="fruit">
+        <option value="" disabled>Broadcast</option>
+        <option value="192.168.1.79:5001">Basement</option>
+        <option value="192.168.1.81:5001">Bedroom</option>
+        <option value="192.168.1.76:5001">Living room</option>
+      </select>
+
       <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
         {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
       </button>

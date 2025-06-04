@@ -1,20 +1,18 @@
 import asyncio
 import websockets
 import receiver
-import base64
 import recorder,playerconv
 from ptt_multicast import CHANNEL
 from receiver import BroadcastingCompletedException
-from websockets.exceptions import InvalidHandshake
-from urllib.parse import urlparse, parse_qs
-
 import ptt_multicast
 import socket,netifaces,struct
+import re
 MCAST_GRP = '224.0.0.251'
-IFACE = 'en0'  # Change if you’re using a different interface
-#IFACE = 'wlan0'  # raspberry PI
 
-MCAST_PORT = 5002
+IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
+#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
+MCAST_PORT = 5001
+
 CHANNEL=1
 ws=None
 isPlaying=False
@@ -77,9 +75,17 @@ async def receive_and_play(websocket):
                 ptt_multicast.send_g722_audio_package(recorder.pcm_to_g722(message),sock,CHANNEL)
                 print(f"Saved {len(message)} bytes")
             else:
-                if(message=="start_broadcast"):
+                if("start_broadcast" in message):
+                    match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
+                    if match:
+                        trg_grp = match.group(1)
+                        trg_port = match.group(2)
+                        print(f"Broadcasting target: IP: {trg_grp}, Port: {trg_port}")
+                    else:
+                        trg_grp=MCAST_GRP
+                        trg_port=MCAST_PORT
 
-                    sock = ptt_multicast.init_sock(MCAST_GRP, MCAST_PORT, IFACE)
+                    sock = ptt_multicast.init_sock(trg_grp, trg_port, IFACE)
                     ptt_multicast.init_ptt_session(sock,CHANNEL)
                     isPlaying=True
                 if(message=="stop_broadcast"):

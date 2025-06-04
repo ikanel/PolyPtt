@@ -8,8 +8,10 @@ import netifaces
 
 MULTICAST_IP="224.0.0.251" #new multicast
 
-IFACE = 'en0'  # Change if you’re using a different interface
-PORT = 5002
+IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
+#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
+
+PORT = 5001
 SAMPLE_RATE = 16000
 PAYLOAD_TYPE = 9  # ITU-T G.722 audio 64 kbit/s
 CHANNEL = 26 #1 for ptt 26 for paging
