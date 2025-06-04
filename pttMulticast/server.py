@@ -9,8 +9,8 @@ import socket,netifaces,struct
 import re
 MCAST_GRP = '224.0.0.251'
 
-IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
-#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
+#IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
+IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
 MCAST_PORT = 5001
 
 CHANNEL=1
