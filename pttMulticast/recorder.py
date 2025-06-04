@@ -4,7 +4,6 @@ import sounddevice as sd
 from G722 import  G722
 import numpy as np
 import queue
-from pynput import keyboard
 
 sample_rate = 16000  # G.722 requires 16kHz
 channels = 1
@@ -47,6 +46,7 @@ def queue_to_bytes(q):
     return np.array([q.get() for _ in range(q.qsize())], dtype=np.int16)
 
 def record_from_mic():
+    from pynput import keyboard	
     global stop_flag
     stop_flag=False
     print('#' * 80)

@@ -12,7 +12,7 @@ import ptt_multicast
 import socket,netifaces,struct
 MCAST_GRP = '224.0.0.251'
 IFACE = 'wlan0'  # Change if you’re using a different interface
-MCAST_PORT = 5002
+MCAST_PORT = 5001
 CHANNEL=1
 ws=None
 isPlaying=False
