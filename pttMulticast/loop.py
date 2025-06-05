@@ -1,6 +1,3 @@
-import receiver
-import threading
-import time
 from pynput import keyboard
 from ptt_multicast import record_and_send_broadcast
 import  receiver
