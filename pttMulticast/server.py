@@ -79,8 +79,6 @@ async def receive_and_play(websocket):
                     match = re.search(r"channel:(\d{1,2})", message)
                     if match:
                         CHANNEL = match.group(1)
-
-
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
