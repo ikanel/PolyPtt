@@ -3,6 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 const isRecording = ref(false)
 const isListening = ref(false)
 const selectedTarget = ref('')
+const channel = ref('1')
 
 const connectionStatus = ref('Disconnected')
 
@@ -32,7 +33,8 @@ async function startRecording(): Promise<void> {
   if (selectedTarget != undefined && selectedTarget.value != '') {
     target = ` target:${selectedTarget.value}`
   }
-  websocket.send(`start_broadcast${target}`)
+
+  websocket.send(`start_broadcast${target} channel:${channel.value}`)
 
   mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
   audioContext = new AudioContext({ sampleRate: 16000 })
@@ -51,7 +53,6 @@ async function startRecording(): Promise<void> {
     buffer.copyToChannel(input, 0)
 
     try {
-      //const resampledBuffer = await resampleBuffer(buffer, 16000)
       const resampled = input
       const pcm16 = floatTo16BitPCM(resampled)
 
@@ -89,12 +90,10 @@ function stopRecording(): void {
   if (websocket) {
     websocket.send('stop_broadcast')
   }
-  //websocket?.close()
 
   processor = null
   audioContext = null
   mediaStream = null
-  //websocket = null
   isRecording.value = false
 }
 
@@ -166,8 +165,15 @@ body {
   <div class="column">
     <h1 class="text-xl font-bold">Polycom PPT</h1>
     <div class="box">
-      <select v-model="selectedTarget" id="fruit">
-        <option value="" disabled>Broadcast</option>
+      Channel:
+      <select v-model="channel">
+        <option v-for="n in 50" :key="n" :value="n">
+          {{ n > 25 ? ` Paging channel ${n - 25}` : `PTT Channel ${n}` }}
+        </option>
+      </select>
+
+      <select v-model="selectedTarget" id="target">
+        <option value="" disabled>Broadcast to all</option>
         <option value="192.168.1.79:5001">Basement</option>
         <option value="192.168.1.81:5001">Bedroom</option>
         <option value="192.168.1.76:5001">Living room</option>
