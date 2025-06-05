@@ -17,8 +17,6 @@ CHANNEL=1
 ws=None
 isPlaying=False
 recv_packets={}
-VALID_USERNAME = "igor"
-VALID_PASSWORD = "polycom"
 
 
 
