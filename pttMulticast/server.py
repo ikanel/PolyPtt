@@ -79,7 +79,7 @@ async def receive_and_play(websocket):
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
-                        trg_port = match.group(2)
+                        trg_port = int(match.group(2))
                         print(f"Broadcasting target: IP: {trg_grp}, Port: {trg_port}")
                     else:
                         trg_grp=MCAST_GRP
