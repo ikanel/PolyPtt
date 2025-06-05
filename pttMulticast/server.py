@@ -67,7 +67,7 @@ class PolycomServerProtocol:
 
 
 async def receive_and_play(websocket):
-    global ws,isPlaying
+    global ws,isPlaying,CHANNEL
     ws=websocket
     try:
         async for message in websocket:
@@ -75,7 +75,10 @@ async def receive_and_play(websocket):
                 ptt_multicast.send_g722_audio_package(recorder.pcm_to_g722(message),sock,CHANNEL)
                 print(f"Saved {len(message)} bytes")
             else:
-                if("start_broadcast" in message):
+                if "start_broadcast" in message:
+                    match = re.search(r"channel:(\d{1,2})", message)
+                    if match:
+                        CHANNEL = match.group(1)
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
@@ -84,6 +87,9 @@ async def receive_and_play(websocket):
                     else:
                         trg_grp=MCAST_GRP
                         trg_port=MCAST_PORT
+
+                    print(f"Broadcasting target: IP: {trg_grp}, Port: {trg_port} Channel: {CHANNEL}")
+
 
                     sock = ptt_multicast.init_sock(trg_grp, trg_port, IFACE)
                     ptt_multicast.init_ptt_session(sock,CHANNEL)
