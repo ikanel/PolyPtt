@@ -5,17 +5,10 @@ import uuid,subprocess
 import recorder
 import socket
 import netifaces
+from connectionSettings import MCAST_GRP,IFACE,MCAST_PORT,CHANNEL,CALLER
 
-MULTICAST_IP="224.0.0.251" #new multicast
-
-IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
-#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
-
-PORT = 5001
 SAMPLE_RATE = 16000
 PAYLOAD_TYPE = 9  # ITU-T G.722 audio 64 kbit/s
-CHANNEL = 26 #1 for ptt 26 for paging
-CALLER="IGOR G KANEL"
 
 def get_ip_addr():
     return netifaces.ifaddresses(IFACE)[netifaces.AF_INET][0]['addr']
@@ -42,7 +35,7 @@ def transmit_packet(sock,header,payload=None):
    packet=header
    if payload:
          packet += payload
-   result=sock.sendto(packet, (MULTICAST_IP, PORT))
+   result=sock.sendto(packet, (MCAST_GRP, PORT))
    return result
 
 def init_ptt_session(sock,channel=CHANNEL):
@@ -77,14 +70,13 @@ def send_g722_audio_package(g722_bytes,sock,channel=CHANNEL):
         prev_data = data
 
 
-def init_sock(MCAST_GRP,MCAST_PORT,MCAST_IFACE="en0"):
-    global MULTICAST_IP,PORT,IFACE,sock
-    MULTICAST_IP=MCAST_GRP
-    PORT=MCAST_PORT
-    IFACE=MCAST_IFACE
+def init_sock(mcast_grp,mcast_port,mcast_iface="en0"):
+    global MCAST_GRP,PORT,IFACE,sock
+    MCAST_GRP=mcast_grp
+    PORT=mcast_port
+    IFACE=mcast_iface
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-    ttl = struct.pack('b', 100)  # Time-to-live
     sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 10)
     sock.setsockopt(socket.SOL_IP, socket.IP_MULTICAST_IF, socket.inet_aton(get_ip_addr()))
     return sock
