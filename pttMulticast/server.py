@@ -9,8 +9,8 @@ import socket,netifaces,struct
 import re
 MCAST_GRP = '224.0.0.251'
 
-#IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
-IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
+IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
+#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
 MCAST_PORT = 5001
 
 CHANNEL=1
@@ -80,7 +80,8 @@ async def receive_and_play(websocket):
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
-                        trg_port = match.group(2)
+                        trg_port = int(match.group(2))
+                        print(f"Broadcasting target: IP: {trg_grp}, Port: {trg_port}")
                     else:
                         trg_grp=MCAST_GRP
                         trg_port=MCAST_PORT
