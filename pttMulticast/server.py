@@ -6,10 +6,9 @@ from receiver import BroadcastingCompletedException
 import ptt_multicast
 import socket,netifaces,struct
 import re
-
 from connectionSettings import MCAST_GRP,IFACE,MCAST_PORT,CHANNEL
+wsClients = set()
 
-ws=None
 isPlaying=False
 recv_packets={}
 
@@ -48,8 +47,14 @@ class PolycomServerProtocol:
                     recv_packets.clear()
                     pcm_bytes=playerconv.decode_g726qi(g726qi_bytes)
 
-                    if ws != None:
-                        asyncio.create_task(ws.send(bytes(pcm_bytes)))
+
+                    for ws in wsClients:
+                        try:
+                            asyncio.create_task(ws.send(bytes(pcm_bytes)))
+                        except Exception as e:
+                            print(f"got an exception {e} trying to send message to ws. Removing the client from the connection pools")
+                            wsClients.remove(ws)
+
         except BroadcastingCompletedException:
             print("Broadcasting completed")
         except Exception as e:
@@ -58,18 +63,20 @@ class PolycomServerProtocol:
 
 
 async def receive_and_play(websocket):
-    global ws,isPlaying,CHANNEL
-    ws=websocket
+    global isPlaying,CHANNEL
     try:
         async for message in websocket:
             if isinstance(message, bytes):
-                ptt_multicast.send_g722_audio_package(recorder.pcm_to_g722(message),sock,CHANNEL)
-                print(f"Saved {len(message)} bytes")
+                if 'sock' in locals():
+                    ptt_multicast.send_g722_audio_package(recorder.pcm_to_g722(message),sock,CHANNEL)
+                    print(f"Saved {len(message)} bytes")
+                else:
+                    print("Payload not sent sock is not initialized")
             else:
                 if "start_broadcast" in message:
                     match = re.search(r"channel:(\d{1,2})", message)
                     if match:
-                        CHANNEL = match.group(1)
+                        CHANNEL = int(match.group(1))
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
@@ -86,8 +93,9 @@ async def receive_and_play(websocket):
                     ptt_multicast.init_ptt_session(sock,CHANNEL)
                     isPlaying=True
                 if(message=="stop_broadcast"):
-                    if sock!=None:
+                    if 'sock' in locals() and sock!=None:
                         sock.close()
+                        sock=None
                     await asyncio.sleep(1.0)
                     isPlaying=False
 
@@ -96,9 +104,14 @@ async def receive_and_play(websocket):
         print("Receive task: connection closed.")
 
 
-async def send_to_client(websocket,sock):
-    #while True:
+async def send_to_client():
     loop = asyncio.get_running_loop()
+    sock = None
+    try:
+        sock = get_socket(MCAST_GRP, MCAST_PORT, IFACE)
+    except Exception as e:
+        print(f"Cannot create a socket"+e)
+
     try:
         transport, protocol = await loop.create_datagram_endpoint(
             lambda: PolycomServerProtocol(),sock=sock
@@ -111,31 +124,26 @@ async def send_to_client(websocket,sock):
 async def handle_connection(websocket):
     print("WSClient connected")
     try:
-        sock=None
-        try:
-            sock=get_socket(MCAST_GRP,MCAST_PORT,IFACE)
-        except Exception as e:
-            print(e)
-        receive_task = asyncio.create_task(receive_and_play(websocket))
-        send_task = asyncio.create_task(send_to_client(websocket,sock))
 
+        wsClients.add(websocket)
+        receive_task = asyncio.create_task(receive_and_play(websocket))
         # Wait for either task to finish (likely receive finishes when client disconnects)
-        done, pending = await asyncio.wait(
-            [receive_task,send_task],
-            return_when=asyncio.ALL_COMPLETED
-        )
-        for task in pending:
-            task.cancel()
+        await receive_task
+        wsClients.remove(websocket)
+
     except Exception as e:
         print(e)
 
     print("WSClient disconnected")
 
 async def main():
-
-
-    async with websockets.serve(handle_connection, "0.0.0.0", 8765):
+    async with  websockets.serve(handle_connection, "0.0.0.0", 8765):
         print("WebSocket server started at ws://localhost:8765")
+        asyncio.create_task(send_to_client())
         await asyncio.Future()  # Run forever
+
+
+
+
 
 asyncio.run(main())
