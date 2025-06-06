@@ -174,7 +174,7 @@ body {
       </select>
 
       <select v-model="selectedTarget" id="target">
-        <option value="" disabled>Broadcast to all</option>
+        <option value="">Broadcast to all</option>
         <option value="192.168.1.79:5001">Basement</option>
         <option value="192.168.1.81:5001">Bedroom</option>
         <option value="192.168.1.76:5001">Living room</option>
