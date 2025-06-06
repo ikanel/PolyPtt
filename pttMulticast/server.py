@@ -57,6 +57,9 @@ class PolycomServerProtocol:
 
                     if ws != None:
                         asyncio.create_task(ws.send(bytes(pcm_bytes)))
+                        print(f"sent a packet to client {len(pcm_bytes)} bytes")
+                    else:
+                        print("Cannot sent. Websocket is closed")
         except BroadcastingCompletedException:
             print("Broadcasting completed")
         except Exception as e:
@@ -76,7 +79,7 @@ async def receive_and_play(websocket):
                 if "start_broadcast" in message:
                     match = re.search(r"channel:(\d{1,2})", message)
                     if match:
-                        CHANNEL = match.group(1)
+                        CHANNEL = int(match.group(1))
                     match = re.search(r"target:(\d{1,3}(?:\.\d{1,3}){3}):(\d+)", message)
                     if match:
                         trg_grp = match.group(1)
@@ -92,19 +95,17 @@ async def receive_and_play(websocket):
                     sock = ptt_multicast.init_sock(trg_grp, trg_port, IFACE)
                     ptt_multicast.init_ptt_session(sock,CHANNEL)
                     isPlaying=True
-                if(message=="stop_broadcast"):
+                elif message=="stop_broadcast":
                     if sock!=None:
                         sock.close()
                     await asyncio.sleep(1.0)
                     isPlaying=False
-
-                print(f"Ignored unknown non-binary message: {message}")
+                else:
+                    print(f"Ignored unknown non-binary message: {message}")
     except websockets.exceptions.ConnectionClosed:
         print("Receive task: connection closed.")
 
-
 async def send_to_client(websocket,sock):
-    #while True:
     loop = asyncio.get_running_loop()
     try:
         transport, protocol = await loop.create_datagram_endpoint(

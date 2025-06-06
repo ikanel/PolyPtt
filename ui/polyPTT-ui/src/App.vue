@@ -23,7 +23,13 @@ function floatTo16BitPCM(input: Float32Array): Int16Array {
   return output
 }
 
+function initAudio(event) {
+  if(event!=undefined)  isListening.value = true;
+  audioCtx.resume()
+}
+
 async function startRecording(): Promise<void> {
+  initAudio()
   if (websocket == undefined || websocket?.readyState != WebSocket.OPEN) {
     console.warn('WebSocket is closed or not ready')
     return
@@ -95,11 +101,6 @@ function stopRecording(): void {
   audioContext = null
   mediaStream = null
   isRecording.value = false
-}
-
-function initAudio() {
-  isListening.value = true
-  audioCtx.resume()
 }
 
 function toggleRecording(): void {
@@ -180,7 +181,7 @@ body {
       </select>
 
       <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
-        {{ isRecording ? 'Stop Recording' : 'Start Recording' }}
+        {{ isRecording ? 'Stop Broadcasting' : 'Start Broadcasting' }}
       </button>
       <button @click="initAudio">
         {{ isListening ? 'Listening' : 'Click to start listening' }}
