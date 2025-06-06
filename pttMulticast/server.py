@@ -2,23 +2,16 @@ import asyncio
 import websockets
 import receiver
 import recorder,playerconv
-from ptt_multicast import CHANNEL
 from receiver import BroadcastingCompletedException
 import ptt_multicast
 import socket,netifaces,struct
 import re
-MCAST_GRP = '224.0.0.251'
 
-IFACE = 'wlan0'  # This value for the raspberry. Change if you’re using a different interface
-#IFACE = 'en0'  # This value for the macos wifi. Change if you’re using a different interface
-MCAST_PORT = 5001
+from connectionSettings import MCAST_GRP,IFACE,MCAST_PORT,CHANNEL
 
-CHANNEL=1
 ws=None
 isPlaying=False
 recv_packets={}
-
-
 
 def get_socket(MCAST_GRP,MCAST_PORT,IFACE="en0"):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
