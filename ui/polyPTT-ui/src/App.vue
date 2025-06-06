@@ -23,7 +23,7 @@ function floatTo16BitPCM(input: Float32Array): Int16Array {
   return output
 }
 
-function initAudio(event) {
+function initAudio(event?:MouseEvent) {
   if(event!=undefined)  isListening.value = true;
   audioCtx.resume()
 }
