@@ -82,6 +82,12 @@ You may consider using https://letsencrypt.org/ to create free ssl certs.
 
 ---
 
+## Backend setup
+
+Run _python loop.py_ if you want to use the service without web frontend or _python server.py_ to provide backend for the web ui.
+
+---
+
 ## 🎧 Audio Codec Notes
 
 Polycom SoundPoint phones (e.g., models 450 and 550) ignore codec configuration and always transmit audio as **G.726 QI** — a variant of the G.726 codec using reversed bit order in the payload.
@@ -97,4 +103,9 @@ Update pttMulticast/playerconf.py with a link to the generated so/dylib library.
 
 ## Payload structure
 The structure of the PTT/Paging packets is described in pttMulticast/ea70568-audio-packet-format.pdf
-  
+
+## Branches
+
+- Raspberry branch contains version of the project with specific configurations for the raspberry
+- master branch contains version of the project with specific configurations for the macos
+
