@@ -28,6 +28,9 @@ class PolycomServerProtocol:
         self.transport = transport
         print("UDP server ready")
 
+    def connection_lost(self, transport):
+        print("UDP server lost the connection")
+
     def datagram_received(self, data, addr):
         print(f"Received  from {addr}")
         global isPlaying
@@ -139,7 +142,7 @@ async def handle_connection(websocket):
 async def main():
     async with  websockets.serve(handle_connection, "0.0.0.0", 8765):
         print("WebSocket server started at ws://localhost:8765")
-        asyncio.create_task(send_to_client())
+        await send_to_client()
         await asyncio.Future()  # Run forever
 
 
