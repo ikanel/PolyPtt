@@ -23,8 +23,8 @@ function floatTo16BitPCM(input: Float32Array): Int16Array {
   return output
 }
 
-function initAudio(event?:MouseEvent) {
-  if(event!=undefined)  isListening.value = true;
+function initAudio(event?: MouseEvent) {
+  if (event != undefined) isListening.value = true
   audioCtx.resume()
 }
 
@@ -180,7 +180,11 @@ body {
         <option value="192.168.1.76:5001">Living room</option>
       </select>
 
-      <button @click="toggleRecording" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+      <button
+        @click="toggleRecording"
+        class="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+        :style="'background-color: ' + (isRecording ? '#FFCCCB' : 'lightgreen')"
+      >
         {{ isRecording ? 'Stop Broadcasting' : 'Start Broadcasting' }}
       </button>
       <button @click="initAudio">
@@ -190,6 +194,13 @@ body {
         Reconnect
       </button>
       Status:{{ connectionStatus }}
+      <ol>
+        <li>Select the channel and broadcasting target if necessary.</li>
+        <li>Click "Start broadcasting" to send a Broadcast.</li>
+        <li>
+          Click "Click to start listening" to initiate browser audio context and start listening
+        </li>
+      </ol>
     </div>
   </div>
 </template>
